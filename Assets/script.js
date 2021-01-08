@@ -15,11 +15,12 @@ buttonPress.on("click", function () {
         alert("Please enter a city")
     }
     else {
+        $(".forecast").empty();
         userInput = $(this).siblings(".inputSearch").val().trim();
         localStorage.setItem(localKey, userInput);
         $(".pastSearches").addClass("past-search").append("<button class= cityButton>" + userInput + "</button>");
     }
-    
+
     searchWeather();
 })
 
