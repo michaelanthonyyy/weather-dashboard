@@ -7,7 +7,7 @@
     <link rel="stylesheet" type="text/css" href="Assets/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"
-    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/f53a07ee43.js" crossorigin="anonymous"></script>
     <title>Weather Dashboard</title>
 
@@ -24,32 +24,36 @@
         </div>
     </section>
 
-    <div class="tile is-parent">
-        <div class="tile vertical is-3 is-parent">
-            <div class="tile is-child box">
-                <header class="title">Search For A City:</p>
+<div class="tile is-parent">
+    <div class="tile vertical is-3 is-parent">
+        <div class="tile is-child box">
+            <header class="title">Search for a city:</header>
                     <div class="control">
-                        <input class="input" type="text" placeholder=""><button><i class="fas fa-search"></i></button>
+                        <input class="input" type="text" placeholder="">
+                        <button class="userSearch"><i class="fas fa-search"></i></button>
                     </div>
                     <br>
-                    <div class="pastSearches">
-                    </div>
-            </div>
+                    <ul class="pastSearches">
+
+
 
         </div>
-        <div class="tile is-child">
-            <div class="tile is-child box">
-                <header class="title">Select </p>
+        
 
-            </div>
-            <br>
-            <div class="tile is-child box">
-                <header class="title">5-Day Forecast:</p>
-                    <section class="fiveDay">
-                    </section>
-            </div>
+    </div>
+    <div class="tile is-child">
+        <div class="tile is-child box">
+            <header class="title">Select </p>
+
+        </div>
+        <br>
+        <div class="tile is-child box">
+            <header class="title">5-Day Forecast:</p>
+                <section class="fiveDay">
+                </section>
         </div>
     </div>
+</div>
     <script src="Assets/script.js"></script>
 </body>
 
