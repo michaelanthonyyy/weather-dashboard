@@ -1,9 +1,8 @@
 var apiKey = "9975a2d1ef4e7fb59bbba6eef797ea85"
 var buttonPress = $(".userSearch");
 var localKey = 0;
-var cityButton = $(".cityButton");
 var userInput = $(".inputSearch").val().trim();
-
+var cityButton = $(".cityButton");
 
 
 
@@ -50,6 +49,13 @@ function searchWeather() {
     })
 }
 
+cityButton.on("click", "button", function () {
+    $(".forecast").empty();
+    userInput.val($(this).text());
+    searchWeather()
+})
+
+
 // function fiveDayForecast() { 
 //     var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + userInput + "&appid=" + apiKey
     
@@ -62,5 +68,5 @@ function searchWeather() {
 //     })
 // }
 
-console.log(localKey);
-console.log(userInput);
+// console.log(localKey);
+// console.log(userInput);
