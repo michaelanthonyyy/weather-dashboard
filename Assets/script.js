@@ -4,11 +4,8 @@ var localKey = 0;
 var cityButton = $(".cityButton");
 var userInput = $(".inputSearch").val().trim();
 
-// for loop appends city from search and local storage as a button
-// for (var i = 0; i < localStorage.length; i++) {
 
 
-// }
 
 buttonPress.on("click", function () {
     if (userInput = "") {
@@ -16,10 +13,11 @@ buttonPress.on("click", function () {
     }
     else {
         $(".forecast").empty();
-        userInput = $(this).siblings(".inputSearch").val().trim();
+        userInput = $(this).siblings(".inputSearch").val().trim().toUpperCase();
         localStorage.setItem(localKey, userInput);
-        $(".pastSearches").addClass("past-search").append("<button class= cityButton>" + userInput + "</button>");
+        $(".pastSearches").addClass("past-search").append("<button class= cityButton>" + userInput + "</button> <br>");
         localKey = localKey + 1
+        $(".inputSearch").empty();
     }
 
     searchWeather();
@@ -33,10 +31,11 @@ function searchWeather() {
         url: queryURL,
         method: "GET"
     }).then(function (response) {
-        var cityName = $(".forecast")
+        var cityName = $(".forecast");
         var lat = response.coord.lat;
         var lon = response.coord.lon;
-        cityName.append("<p> <strong>" + userInput + " " + (moment().format("M/D/YY")) + "</p></strong>");
+        $(".currentWeather").empty();
+        $(".currentWeather").append("<p> <strong>" + userInput + " " + (moment().format("MM/MD/YY")) + "</p></strong>");
         cityName.append("<p>" + "Temperature: " + response.main.temp + "</p>");
         cityName.append("<p>" + "Humidity: " + response.main.humidity + "%" + "</p>");
         cityName.append("<p>" + "Wind Speed: " + response.wind.speed + "</p>");
@@ -44,12 +43,24 @@ function searchWeather() {
             url: "http://api.openweathermap.org/data/2.5/uvi?lat=" + lat + "&lon=" + lon + "&appid=" + apiKey,
             method: "GET"
         }).then(function (response) {
-            var uvIndex = cityName.append("<p>" + "UV Index: " + response.value + "</p>")
+            var uvIndex = cityName.append("<p>" + "UV Index: " + response.value + "</p>");
             cityName.append(uvIndex);
         })
+        fiveDayForecast();
     })
 }
 
+// function fiveDayForecast() { 
+//     var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + userInput + "&appid=" + apiKey
+    
+//     $.ajax({
+//         url: queryURL,
+//         method: "GET"
+//     }).then(function (response) {
+//         var five = $(".fiveDay");
+//         five.append("<p>" + response.list.main.temp + "</p>");
+//     })
+// }
 
 console.log(localKey);
 console.log(userInput);
