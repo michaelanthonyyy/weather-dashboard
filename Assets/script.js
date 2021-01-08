@@ -19,6 +19,7 @@ buttonPress.on("click", function () {
         userInput = $(this).siblings(".inputSearch").val().trim();
         localStorage.setItem(localKey, userInput);
         $(".pastSearches").addClass("past-search").append("<button class= cityButton>" + userInput + "</button>");
+        localKey = localKey + 1
     }
 
     searchWeather();
@@ -32,12 +33,20 @@ function searchWeather() {
         url: queryURL,
         method: "GET"
     }).then(function (response) {
-        // print current date using moment.js
         var cityName = $(".forecast")
-        cityName.append("<p>" + userInput + "</p>");
+        var lat = response.coord.lat;
+        var lon = response.coord.lon;
+        cityName.append("<p> <strong>" + userInput + " " + (moment().format("M/D/YY")) + "</p></strong>");
         cityName.append("<p>" + "Temperature: " + response.main.temp + "</p>");
         cityName.append("<p>" + "Humidity: " + response.main.humidity + "%" + "</p>");
         cityName.append("<p>" + "Wind Speed: " + response.wind.speed + "</p>");
+        $.ajax({
+            url: "http://api.openweathermap.org/data/2.5/uvi?lat=" + lat + "&lon=" + lon + "&appid=" + apiKey,
+            method: "GET"
+        }).then(function (response) {
+            var uvIndex = cityName.append("<p>" + "UV Index: " + response.value + "</p>")
+            cityName.append(uvIndex);
+        })
     })
 }
 
