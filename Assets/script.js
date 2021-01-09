@@ -3,7 +3,7 @@ var buttonPress = $(".userSearch");
 var localKey = 0;
 var userInput = $(".inputSearch").val().trim();
 var cityButton = $(".cityButton");
-
+var five = $(".fiveDay");
 
 
 buttonPress.on("click", function () {
@@ -34,6 +34,7 @@ function searchWeather() {
         var lat = response.coord.lat;
         var lon = response.coord.lon;
         $(".currentWeather").empty();
+        five.empty();
         $(".currentWeather").append("<p> <strong>" + userInput + " " + (moment().format("MM/MD/YY")) + "</p></strong>");
         cityName.append("<p>" + "Temperature: " + response.main.temp + "</p>");
         cityName.append("<p>" + "Humidity: " + response.main.humidity + "%" + "</p>");
@@ -49,24 +50,23 @@ function searchWeather() {
     })
 }
 
+function fiveDayForecast() { 
+    var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + userInput + "&units=imperial&appid=" + apiKey
+    
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+    }).then(function (response) {
+        five.append("<p>" + "Temp: " + response.list[0].main.temp + "</p>");
+        five.append("<p>" + "Humidity: " + response.list[0].main.humidity + "% </p>");
+    })
+}
+
 cityButton.on("click", "button", function () {
     $(".forecast").empty();
     userInput.val($(this).text());
     searchWeather()
 })
-
-
-// function fiveDayForecast() { 
-//     var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + userInput + "&appid=" + apiKey
-    
-//     $.ajax({
-//         url: queryURL,
-//         method: "GET"
-//     }).then(function (response) {
-//         var five = $(".fiveDay");
-//         five.append("<p>" + response.list.main.temp + "</p>");
-//     })
-// }
 
 // console.log(localKey);
 // console.log(userInput);
