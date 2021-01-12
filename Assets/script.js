@@ -47,14 +47,14 @@ function searchWeather() {
         $(".currentWeather").append("<p> <strong>" + userInput + " " + (moment().format("MM/DD/YY")) + "</p></strong>");
         cityName.append("<img id='weatherIcon'>");
         $("#weatherIcon").attr("src", "http://openweathermap.org/img/wn/"+ response.weather[0].icon + ".png");
-        cityName.append("<p>" + "Temperature: " + response.main.temp + " °F</p>");
-        cityName.append("<p>" + "Humidity: " + response.main.humidity + "%" + "</p>");
-        cityName.append("<p>" + "Wind Speed: " + response.wind.speed + "</p>");
+        cityName.append("<p><strong>" + "Temperature: </strong>" + response.main.temp + " °F</p>");
+        cityName.append("<p><strong>" + "Humidity: </strong>" + response.main.humidity + "%" + "</p>");
+        cityName.append("<p><strong>" + "Wind Speed: </strong>" + response.wind.speed + "</p>");
         $.ajax({
             url: "http://api.openweathermap.org/data/2.5/uvi?lat=" + lat + "&lon=" + lon + "&appid=" + apiKey,
             method: "GET"
         }).then(function (response) {
-            var uvIndex = cityName.append("<p>" + "UV Index: " + response.value + "</p>");
+            var uvIndex = cityName.append("<p><strong>" + "UV Index: </strong>" + response.value + "</p>");
             cityName.append(uvIndex);
         })
         $(".columnOne").empty();
