@@ -20,13 +20,15 @@ buttonPress.on("click", function () {
         $(".inputSearch").val("");
     }
     searchWeather();
+    // Search button function to add search to local storage, create new buttons for those cities and to run 
+    // searchWeather() function that appends the data to the page
 })
 
 $(document).on("click", ".cityButton", function () {
     $(".forecast").empty();
     userInput = ($(this).text());
     searchWeather()
-
+// on click function for dynamically created buttons from previous searches
 })
 
 
