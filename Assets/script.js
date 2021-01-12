@@ -47,7 +47,7 @@ function searchWeather() {
         $(".currentWeather").append("<p> <strong>" + userInput + " " + (moment().format("MM/DD/YY")) + "</p></strong>");
         cityName.append("<img id='weatherIcon'>");
         $("#weatherIcon").attr("src", "http://openweathermap.org/img/wn/"+ response.weather[0].icon + ".png");
-        cityName.append("<p>" + "Temperature: " + response.main.temp + "</p>");
+        cityName.append("<p>" + "Temperature: " + response.main.temp + " °F</p>");
         cityName.append("<p>" + "Humidity: " + response.main.humidity + "%" + "</p>");
         cityName.append("<p>" + "Wind Speed: " + response.wind.speed + "</p>");
         $.ajax({
@@ -96,13 +96,13 @@ function fiveDayForecast() {
         columnThree.append("<p>" + "Temperature: <br>" + response.list[2].main.temp + " °F</p>");
         columnThree.append("<p>" + "Humidity: " + response.list[2].main.humidity + "</p>");
 
-        columnFour.append("<p>" + "<strong>" + (moment().add(1, 'days').format("M/DD/YY")) + "</strong>");
+        columnFour.append("<p>" + "<strong>" + (moment().add(3, 'days').format("M/DD/YY")) + "</strong>");
         columnFour.append("<img id='image4'>");
         $("#image4").attr("src", "http://openweathermap.org/img/wn/"+ response.list[3].weather[0].icon + ".png");
         columnFour.append("<p>" + "Temperature: <br>" + response.list[3].main.temp + " °F</p>");
         columnFour.append("<p>" + "Humidity: " + response.list[3].main.humidity + "</p>");
 
-        columnFive.append("<p>" + "<strong>" + (moment().add(2, 'days').format("M/DD/YY")) + "</strong>"); 
+        columnFive.append("<p>" + "<strong>" + (moment().add(4, 'days').format("M/DD/YY")) + "</strong>"); 
         columnFive.append("<img id='image5'>");
         $("#image5").attr("src", "http://openweathermap.org/img/wn/"+ response.list[4].weather[0].icon + ".png");
         columnFive.append("<p>" + "Temperature: <br>" + response.list[4].main.temp + " °F</p>");
